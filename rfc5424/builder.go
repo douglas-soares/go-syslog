@@ -9419,9 +9419,7 @@ func (sm *SyslogMessage) set(from entrypoint, value string) *SyslogMessage {
 					text = common.RemoveBytes(text, backslashes, pb)
 				}
 				// Assuming SD map already exists, contains currentid key and currentparamname key (set from outside)
-				fmt.Println("builder -> ", currentid, currentparamname)
 				elements := *sm.StructuredData
-
 				elements[currentid][currentparamname] = string(text)
 
 			case 60:
@@ -9525,10 +9523,29 @@ func (sm *SyslogMessage) SetParameter(id string, name string, value string) Buil
 	// Create an element with the given id (or re-use the existing one)
 	sm.set(sdid, id)
 
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("ID:", id)
+			fmt.Println("name:", name)
+			fmt.Println("value:", value)
+			fmt.Println("Current ID:", currentid)
+			fmt.Println("Current Param:", currentparamname)
+			if sm.StructuredData != nil {
+				fmt.Println("StructuredData:", *sm.StructuredData)
+			} else {
+				fmt.Println("StructuredData null")
+			}
+			if sm.Message != nil {
+				fmt.Println("Message:", *sm.Message)
+			} else {
+				fmt.Println("Message null")
+			}
+		}
+	}()
+
 	// We can create parameter iff the given element id exists
 	if sm.StructuredData != nil {
 		elements := *sm.StructuredData
-		fmt.Println("builder elements -> ", elements)
 		if _, ok := elements[id]; ok {
 			currentid = id
 			sm.set(sdpn, name)
