@@ -3,7 +3,7 @@ package rfc3164
 import (
 	"sync"
 
-	syslog "github.com/influxdata/go-syslog/v3"
+	syslog "github.com/douglas-soares/go-syslog/v3"
 )
 
 // parser represent a RFC3164 parser with mutex capabilities.

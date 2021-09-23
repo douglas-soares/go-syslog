@@ -1,13 +1,15 @@
 package nontransparent
 
 import (
-	"github.com/davecgh/go-spew/spew"
 	"io"
 	"math/rand"
 	"strings"
 
-	"github.com/influxdata/go-syslog/v3"
+	"github.com/davecgh/go-spew/spew"
+
 	"time"
+
+	"github.com/douglas-soares/go-syslog/v3"
 )
 
 func Example_withoutTrailerAtEnd() {

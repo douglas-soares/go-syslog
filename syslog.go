@@ -6,7 +6,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/influxdata/go-syslog/v3/common"
+	"github.com/douglas-soares/go-syslog/v3/common"
 )
 
 // BestEfforter is an interface that wraps the HasBestEffort method.

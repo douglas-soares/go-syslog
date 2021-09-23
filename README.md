@@ -22,7 +22,7 @@ For example:
 ## Installation
 
 ```
-go get github.com/influxdata/go-syslog/v3
+go get github.com/douglas-soares/go-syslog/v3
 ```
 
 ## Docs
